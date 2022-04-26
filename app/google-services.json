@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "734491004265",
+    "project_id": "russio-f6a37",
+    "storage_bucket": "russio-f6a37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734491004265:android:adbaa61309023fa7e801f8",
+        "android_client_info": {
+          "package_name": "com.example.russian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734491004265-ko6geov6sf71h9h6jps3s6q2uj26ol4m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiYZT3Fw-RSYDrd54OYM_Et3-mulVnDfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734491004265-ko6geov6sf71h9h6jps3s6q2uj26ol4m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
