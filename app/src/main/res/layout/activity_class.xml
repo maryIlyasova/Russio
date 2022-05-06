@@ -9,27 +9,31 @@
 
     <ImageView
         android:id="@+id/img_dragonfly2"
-        android:layout_width="48dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:layout_above="@+id/img_grass_class"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="478dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
+        android:layout_marginTop="453dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="92dp"
         android:rotation="270"
         app:srcCompat="@drawable/ic_dragonfly" />
 
     <ImageView
         android:id="@+id/img_dragonfly"
-        android:layout_width="48dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="314dp"
-        android:layout_marginEnd="344dp"
-        android:layout_marginRight="344dp"
+        android:layout_width="82dp"
+        android:layout_height="99dp"
+        android:layout_below="@+id/btn_back_class"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="225dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="281dp"
+        android:layout_toStartOf="@+id/btn_class2"
+        android:layout_toLeftOf="@+id/btn_class2"
         android:rotation="0"
         app:srcCompat="@drawable/ic_dragonfly" />
 
@@ -102,7 +106,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_back"
+        android:id="@+id/btn_back_class"
         android:layout_width="69dp"
         android:layout_height="69dp"
         android:layout_alignParentStart="true"

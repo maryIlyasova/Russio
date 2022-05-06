@@ -50,7 +50,9 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                     Intent intent = new Intent(WelcomeActivity.this,HomeActivity.class);
                     startActivity(intent);
                     ref.child("users").child(user.getUid()).child("name").setValue(name);
-
+                    ref.child("users").child(user.getUid()).child("coins").setValue(0);
+                    ref.child("users").child(user.getUid()).child("name").setValue(name);
+                    ref.child("users").child(user.getUid()).child("email").setValue(user.getEmail());
                 }else
                     Toast.makeText(WelcomeActivity.this, "Введите имя", Toast.LENGTH_SHORT).show();
         }

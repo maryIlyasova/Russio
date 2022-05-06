@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_olive"
+    tools:context=".UnitActivity">
+
+    <Button
+        android:id="@+id/btn_back_unit"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/ic_back"
+        app:backgroundTint="@color/grey" />
+
+    <ImageView
+        android:id="@+id/img_grass_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-25dp"
+        android:layout_marginLeft="-25dp"
+        android:layout_marginBottom="-15dp"
+        app:srcCompat="@drawable/ic_grass" />
+
+    <ImageView
+        android:id="@+id/img_grass_unit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-30dp"
+        android:layout_marginRight="-30dp"
+        android:layout_marginBottom="-13dp"
+        app:srcCompat="@drawable/ic_grass" />
+
+    <TextView
+        android:id="@+id/text_class_title"
+        android:layout_width="187dp"
+        android:layout_height="41dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="87dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/btn_back_unit"
+        android:layout_toRightOf="@+id/btn_back_unit"
+        android:text="КЛАСС"
+        android:textColor="@color/dark_brown"
+        android:textSize="34sp" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="305dp"
+        android:layout_height="527dp"
+        android:layout_below="@+id/text_class_title"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"></LinearLayout>
+</RelativeLayout>

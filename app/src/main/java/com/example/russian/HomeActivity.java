@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +36,27 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         coins=(TextView)findViewById(R.id.text_coin);
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference();
         FirebaseUser user=mAuth.getCurrentUser();
-        String id=user.getUid();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    Intent intent = new Intent(HomeActivity.this,EmailPasswordActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    // User is signed out
+
+                }
+
+            }
+        };
+        if(user==null){
+            Intent intent = new Intent(HomeActivity.this,EmailPasswordActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         // Key
         ref.addValueEventListener(new ValueEventListener() {
@@ -61,6 +82,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(HomeActivity.this,ClassActivity.class);
             startActivity(intent);
         }
+        if(view.getId() == R.id.btn_user)
+        {
+            Intent intent = new Intent(HomeActivity.this,ProfileActivity.class);
+            startActivity(intent);
+        }
+        if(view.getId() == R.id.btn_shop)
+        {
+            Intent intent = new Intent(HomeActivity.this,ShopActivity.class);
+            startActivity(intent);
+        }
+
 
     }
 }
