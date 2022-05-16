@@ -1,6 +1,5 @@
 package com.example.russian;
 
-import android.content.Intent;
 import android.database.SQLException;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -128,9 +127,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId() == R.id.btn_back_shop)
         {
-            Intent intent = new Intent(ShopActivity.this,HomeActivity.class);
-            startActivity(intent);
-            finish();
+            onBackPressed();
         }
     }
 }

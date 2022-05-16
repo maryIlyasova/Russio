@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.russian.tables.Unit;
 import com.example.russian.utils.DataBaseHelper;
@@ -31,7 +32,7 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
         savedInstanceState=getIntent().getExtras();
         String class_number=savedInstanceState.get("number").toString();
         linearLayout=findViewById(R.id.linear_layout);
-        findViewById(R.id.btn_back_unit).setOnClickListener(this);
+        findViewById(R.id.btn_back_reward).setOnClickListener(this);
         class_name=findViewById(R.id.text_class_title);
         class_name.setText(class_number+" КЛАСС");
 
@@ -51,7 +52,7 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
             Button button=new Button(this);
             button.setText(units.get(i).getName());
             button.setBackgroundResource(R.color.brown);
-            button.setTextColor(R.color.light_orange);
+            button.setTextColor(ContextCompat.getColor(this,R.color.light_orange));
             button.setTextSize(17);
             int id=units.get(i).getID();
             button.setOnClickListener((view -> {
@@ -67,11 +68,9 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.btn_back_unit)
+        if(view.getId() == R.id.btn_back_reward)
         {
-            Intent intent = new Intent(UnitActivity.this,ClassActivity.class);
-            startActivity(intent);
-            finish();
+            onBackPressed();
         }
     }
 }

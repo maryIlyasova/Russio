@@ -25,6 +25,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.russian.tables.Reward;
 import com.example.russian.tables.Task;
@@ -59,7 +60,15 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
     private final Integer[] coins = {0};
     private final Long[] tasks_number = {(long)0};
    private final Long[] rewards_number ={(long)0};
+
+   private List<TextView> points;
+   private  DataBaseHelper db;
+   private  List<Word> words;
    private Dialog dialog;
+   private List<Task> tasks;
+   private Reward possible_reward;
+    private Unit unit;
+    private List<Word> temp_words;
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,13 +100,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-    }
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @SuppressLint("ResourceAsColor")
-    @Override
-    protected void onResume(){
-        super.onResume();
-        List<TextView> points=new ArrayList<TextView>();
+        points=new ArrayList<TextView>();
         points.add(findViewById(R.id.task1));
         points.add(findViewById(R.id.task2));
         points.add(findViewById(R.id.task3));
@@ -109,21 +112,29 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
         points.add(findViewById(R.id.task9));
         points.add(findViewById(R.id.task10));
 
-        DataBaseHelper db = DataBaseHelper.getDB(this);
+      db = DataBaseHelper.getDB(this);
         try {
             db.openDataBase();
         }catch(SQLException sqle){
             throw sqle;
         }
-        List<Word> words=db.getWordsByIdUnit(unit_id);
-        List<Task> tasks=db.getAllTasks();
-        Reward possible_reward=db.getRewardByIdUnit(Integer.parseInt(unit_id));
-        Unit unit=db.getUnit(Integer.parseInt(unit_id));
-        List<Word> temp_words=new ArrayList<Word>();
+       words=db.getWordsByIdUnit(unit_id);
+        tasks=db.getAllTasks();
+        possible_reward=db.getRewardByIdUnit(Integer.parseInt(unit_id));
+        unit=db.getUnit(Integer.parseInt(unit_id));
+        temp_words=new ArrayList<Word>();
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceAsColor")
+    @Override
+    protected void onResume(){
+        super.onResume();
 
         if(counter.get() <5)
         {
-            temp_words =getWordsByIdTask(words,tasks.get(0).getID());
+            if(counter.get()<1)
+                temp_words =getWordsByIdTask(words,tasks.get(0).getID());
             txt_condition.setText(tasks.get(0).getCondition());
             Integer number= RandomGenerationUtils.generateRandomNumber(temp_words.size());
             String[] letters =temp_words.get(number).getTaskValue().split("\\.");
@@ -145,12 +156,12 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
             Button button=new Button(this);
             button.setText("Готово");
             button.setBackgroundResource(R.color.brown);
-            button.setTextColor(R.color.light_orange);
+            button.setTextColor(ContextCompat.getColor(this,R.color.light_orange));
             button.setTextSize(18);
-            List<Word> finalTemp_words = temp_words;
+
             button.setOnClickListener((view -> {
                 String answer=letters[0]+editText.getText()+letters[1];
-                if(answer.equals(finalTemp_words.get(number).getCorrectValue())){
+                if(answer.equals(temp_words.get(number).getCorrectValue())){
                     points.get(counter.get()).setBackground(getDrawable(R.drawable.style_points_green));
                     correct_tasks++;
                     fox.setImageResource(R.drawable.ic_winking_fox);
@@ -160,7 +171,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
                     fox.setImageResource(R.drawable.ic_oops_fox);
                 }
                 counter.getAndIncrement();
-                finalTemp_words.remove(number);
+                temp_words.remove(temp_words.get(number));
                 taskLayout.removeView(textView);
                 taskLayout.removeView(textView2);
                 taskLayout.removeView(editText);
@@ -176,7 +187,9 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
             if(correct_tasks<3)
                 fox.setImageResource(R.drawable.ic_dissatisfied_fox);
             Animation anim= AnimationUtils.loadAnimation(this, R.anim.wait);
-            temp_words =getWordsByIdTask(words,tasks.get(1).getID());
+            if(counter.get()<6) {
+                temp_words.clear();
+                temp_words =getWordsByIdTask(words,tasks.get(1).getID());}
             txt_condition.setText(tasks.get(1).getCondition());
             Integer number= RandomGenerationUtils.generateRandomNumber(temp_words.size());
             String[] letters =temp_words.get(number).getTaskValue().split(",");
@@ -185,20 +198,18 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
             Integer numb=RandomGenerationUtils.generateRandomNumber(2);
             btn_left.setText(letters[numb]);
             btn_left.setBackgroundResource(R.color.brown);
-            btn_left.setTextColor(R.color.light_orange);
+            btn_left.setTextColor(ContextCompat.getColor(this,R.color.light_orange));
             btn_left.setTextSize(18);
-            List<Word> finalTemp_words1 = temp_words;
             Button btn_right=new Button(this);
             numb++;
             if(numb==2)
                 numb=0;
             btn_right.setText(letters[numb]);
             btn_right.setBackgroundResource(R.color.brown);
-            btn_right.setTextColor(R.color.light_orange);
+            btn_right.setTextColor(ContextCompat.getColor(this,R.color.light_orange));
             btn_right.setTextSize(18);
-            List<Word> finalTemp_words2 = temp_words;
             btn_left.setOnClickListener((view -> {
-                if(btn_left.getText().equals(finalTemp_words1.get(number).getCorrectValue())){
+                if(btn_left.getText().equals(temp_words.get(number).getCorrectValue())){
                     points.get(counter.get()).setBackground(getDrawable(R.drawable.style_points_green));
                     btn_left.setBackground(getDrawable(R.drawable.style_points_green));
                     btn_right.setBackground(getDrawable(R.drawable.style_points_red));
@@ -214,6 +225,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 counter.getAndIncrement();
                 onPause();
+                temp_words.remove(temp_words.get(number));
                 taskLayout.removeView(btn_left);
                 taskLayout.removeView(btn_right);
                 onResume();
@@ -223,7 +235,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
 
 
             btn_right.setOnClickListener((view -> {
-                if(btn_right.getText().equals(finalTemp_words2.get(number).getCorrectValue())){
+                if(btn_right.getText().equals(temp_words.get(number).getCorrectValue())){
                     points.get(counter.get()).setBackground(getDrawable(R.drawable.style_points_green));
                     btn_right.setBackground(getDrawable(R.drawable.style_points_green));
                     btn_left.setBackground(getDrawable(R.drawable.style_points_red));
@@ -237,6 +249,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 counter.getAndIncrement();
                 onPause();
+                temp_words.remove(temp_words.get(number));
                 taskLayout.removeView(btn_right);
                 taskLayout.removeView(btn_left);
                 onResume();
@@ -250,6 +263,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
                 fox.setImageResource(R.drawable.ic_sad_fox);
             if(correct_tasks>7)
                 fox.setImageResource(R.drawable.ic_smiling_fox);
+            temp_words.clear();
             temp_words =getWordsByIdTask(words,tasks.get(2).getID());
             txt_condition.setText(tasks.get(2).getCondition());
             Integer number= RandomGenerationUtils.generateRandomNumber(temp_words.size());
@@ -265,7 +279,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
                 layout.setOrientation(LinearLayout.HORIZONTAL);
                 taskLayout.addView(layout);
                 TextView textView1=new TextView(this);
-                textView1.setText(letters[1]);
+                textView1.setText(letters[1]+" - ");
                 textView1.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
                 layout.addView(textView1);
                 EditText editText=new EditText(this);
@@ -277,7 +291,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
             layout2.setOrientation(LinearLayout.HORIZONTAL);
             taskLayout.addView(layout2);
             TextView textView2=new TextView(this);
-            textView2.setText(letters[2]);
+            textView2.setText(letters[2] +" - ");
             textView2.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             layout2.addView(textView2);
             EditText editText2=new EditText(this);
@@ -289,7 +303,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
             layout3.setOrientation(LinearLayout.HORIZONTAL);
             taskLayout.addView(layout3);
             TextView textView3=new TextView(this);
-            textView3.setText(letters[3]);
+            textView3.setText(letters[3]+" - ");
             textView3.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             layout3.addView(textView3);
             EditText editText3=new EditText(this);
@@ -301,7 +315,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
             Button button=new Button(this);
             button.setText("Готово");
             button.setBackgroundResource(R.color.brown);
-            button.setTextColor(R.color.light_orange);
+            button.setTextColor(ContextCompat.getColor(this,R.color.light_orange));
             button.setTextSize(18);
             List<Word> finalTemp_words = temp_words;
             button.setOnClickListener((view -> {
@@ -384,7 +398,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
                         reward_name.setText(possible_reward.getName());
                         TextView unit_name=dialog.findViewById(R.id.unit_name);
                         unit_name.setText(unit.getName());
-                        Button btn_ok_reward=dialog.findViewById(R.id.btn_ok_dialog_reward);
+                        Button btn_ok_reward=dialog.findViewById(R.id.btn_ok_dialog_stat);
                         btn_ok_reward.setOnClickListener(view1 -> {
                             Intent intent = new Intent(TaskActivity.this, UnitActivity.class);
                             intent.putExtra("number", class_id);
@@ -419,10 +433,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId() == R.id.btn_back_task)
         {
-            Intent intent = new Intent(TaskActivity.this,UnitActivity.class);
-            intent.putExtra("number",class_id);
-            startActivity(intent);
-            finish();
+            onBackPressed();
         }
     }
 }

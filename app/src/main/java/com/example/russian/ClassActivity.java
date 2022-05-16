@@ -23,37 +23,34 @@ public class ClassActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         if(view.getId() == R.id.btn_back_class)
         {
-            Intent intent = new Intent(ClassActivity.this,HomeActivity.class);
-             startActivity(intent);
-            finish();
+            onBackPressed();
         }
         if(view.getId() == R.id.btn_class)
         {
             Intent intent = new Intent(ClassActivity.this,UnitActivity.class);
             intent.putExtra("number",1);
             startActivity(intent);
-            finish();
         }
         if(view.getId() == R.id.btn_class2)
         {
             Intent intent = new Intent(ClassActivity.this,UnitActivity.class);
             intent.putExtra("number",2);
             startActivity(intent);
-            finish();
+
         }
         if(view.getId() == R.id.btn_class3)
         {
             Intent intent = new Intent(ClassActivity.this,UnitActivity.class);
             intent.putExtra("number",3);
             startActivity(intent);
-            finish();
+
         }
         if(view.getId() == R.id.btn_class4)
         {
             Intent intent = new Intent(ClassActivity.this,UnitActivity.class);
             intent.putExtra("number",4);
             startActivity(intent);
-            finish();
+
         }
 
     }

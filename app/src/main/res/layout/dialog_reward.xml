@@ -23,7 +23,7 @@
             app:srcCompat="@drawable/ic_award" />
 
         <TextView
-            android:id="@+id/txt_given_reward"
+            android:id="@+id/txt_statistics"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:text="Получена награда"
@@ -67,7 +67,7 @@
 
 
         <Button
-            android:id="@+id/btn_ok_dialog_reward"
+            android:id="@+id/btn_ok_dialog_stat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 

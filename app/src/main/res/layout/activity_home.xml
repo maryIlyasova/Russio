@@ -120,4 +120,68 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_user" />
 
+    <ImageView
+        android:id="@+id/ic_red_flower"
+        android:layout_width="76dp"
+        android:layout_height="86dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginRight="152dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_grass"
+        app:layout_constraintEnd_toStartOf="@+id/img_fox"
+        app:srcCompat="@drawable/ic_red_flower" />
+
+    <ImageView
+        android:id="@+id/ic_yellow_flower"
+        android:layout_width="65dp"
+        android:layout_height="93dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_grass"
+        app:layout_constraintEnd_toStartOf="@+id/img_fox"
+        app:srcCompat="@drawable/ic_yellow_flower" />
+
+    <ImageView
+        android:id="@+id/ic_snail"
+        android:layout_width="71dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="188dp"
+        app:layout_constraintStart_toEndOf="@+id/img_grass"
+        app:layout_constraintTop_toTopOf="@+id/img_fox"
+        app:srcCompat="@drawable/ic_snail" />
+
+    <ImageView
+        android:id="@+id/ic_bird"
+        android:layout_width="100dp"
+        android:layout_height="81dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_start"
+        app:layout_constraintTop_toBottomOf="@+id/img_grass"
+        app:srcCompat="@drawable/ic_bird" />
+
+    <ImageView
+        android:id="@+id/ic_rabbit"
+        android:layout_width="112dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="28dp"
+        android:rotationY="180"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_fox"
+        app:srcCompat="@drawable/ic_rabbit" />
+
+    <ImageView
+        android:id="@+id/ic_house"
+        android:layout_width="195dp"
+        android:layout_height="237dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_grass"
+        app:layout_constraintEnd_toStartOf="@+id/img_fox"
+        app:srcCompat="@drawable/ic_house" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

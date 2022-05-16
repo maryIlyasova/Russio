@@ -92,6 +92,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(HomeActivity.this,ShopActivity.class);
             startActivity(intent);
         }
+        if(view.getId() == R.id.btn_reward)
+        {
+            Intent intent = new Intent(HomeActivity.this,RewardActivity.class);
+            startActivity(intent);
+        }
 
 
     }
