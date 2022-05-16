@@ -52,7 +52,8 @@
         android:textSize="20sp"
         app:backgroundTint="@color/brown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/btn_class3"
@@ -69,7 +70,8 @@
         android:textSize="20sp"
         app:backgroundTint="@color/brown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/btn_class4"
@@ -86,7 +88,8 @@
         android:textSize="20sp"
         app:backgroundTint="@color/brown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/btn_class"
@@ -103,7 +106,8 @@
         android:textSize="20sp"
         app:backgroundTint="@color/brown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/btn_back_class"
@@ -146,12 +150,13 @@
         android:id="@+id/text_hint"
         android:layout_width="249dp"
         android:layout_height="85dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/btn_back_class"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginRight="78dp"
         android:gravity="center"
         android:text="Выбери класс, чтобы начать выполнение упражнений"
         android:textColor="@color/dark_brown"

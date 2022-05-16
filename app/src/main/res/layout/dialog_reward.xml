@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_result"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/light_olive"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_award"
+            android:layout_width="132dp"
+            android:layout_height="114dp"
+            app:srcCompat="@drawable/ic_award" />
+
+        <TextView
+            android:id="@+id/txt_given_reward"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:text="Получена награда"
+            android:textColor="@color/dark_brown"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:gravity="center">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/reward_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="название"
+            android:textColor="@color/dark_brown"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/unit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="название темы"
+            android:textColor="@color/dark_brown"
+            android:textSize="22sp"
+            android:textStyle="bold"></TextView>
+
+        <ImageView
+            android:id="@+id/img_medal"
+            android:layout_width="77dp"
+            android:layout_height="87dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/ic_medal" />
+
+
+        <Button
+            android:id="@+id/btn_ok_dialog_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:backgroundTint="@color/brown"
+            android:text="OK"
+            android:textColor="@color/light_orange"
+            app:cornerRadius="10dp"
+            app:strokeColor="#000000" />
+
+    </LinearLayout>
+
+</LinearLayout>

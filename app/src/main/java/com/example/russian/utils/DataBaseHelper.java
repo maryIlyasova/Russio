@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.russian.tables.Item;
+import com.example.russian.tables.Reward;
 import com.example.russian.tables.Task;
 import com.example.russian.tables.Unit;
 import com.example.russian.tables.Word;
@@ -43,6 +44,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String KEY_TASK_VALUE= "TaskValue";
     private static final String KEY_CORRECT_VALUE= "CorrectValue";
     private static final String KEY_ID_TASK= "IdTask";
+
+    private static final String TABLE_REWARD = "reward";
+
     private static DataBaseHelper mInstance = null;
 
     /**
@@ -188,7 +192,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
 
-        Unit unit = new Unit(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(2)), cursor.getString(1));
+        Unit unit = new Unit(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)), cursor.getString(2));
 
         return unit;
     }
@@ -269,6 +273,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return wordList;
+    }
+
+    public Reward getRewardById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_REWARD, new String[] {KEY_ID,KEY_NAME,
+                        KEY_ID_UNIT  }, KEY_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        Reward reward = new Reward(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
+
+        return reward;
+    }
+    public Reward getRewardByIdUnit(int idUnit) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_REWARD, new String[] {KEY_ID,KEY_NAME,
+                        KEY_ID_UNIT  }, KEY_ID_UNIT + "=?",
+                new String[] { String.valueOf(idUnit) }, null, null, null, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        Reward reward = new Reward(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
+
+        return reward;
     }
     @Override
     public void onCreate(SQLiteDatabase db) {

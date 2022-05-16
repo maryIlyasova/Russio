@@ -1,8 +1,11 @@
 package com.example.russian;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.SQLException;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -10,6 +13,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -22,7 +26,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.russian.tables.Reward;
 import com.example.russian.tables.Task;
+import com.example.russian.tables.Unit;
 import com.example.russian.tables.Word;
 import com.example.russian.utils.DataBaseHelper;
 import com.example.russian.utils.RandomGenerationUtils;
@@ -40,6 +46,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TaskActivity extends AppCompatActivity implements View.OnClickListener {
     private String unit_id;
+    private String class_id;
     private TextView txt_condition;
     private LinearLayout taskLayout;
     private LinearLayout buttonLayout;
@@ -52,6 +59,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
     private final Integer[] coins = {0};
     private final Long[] tasks_number = {(long)0};
    private final Long[] rewards_number ={(long)0};
+   private Dialog dialog;
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +67,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_task);
         savedInstanceState=getIntent().getExtras();
         unit_id=savedInstanceState.get("unit_id").toString();
+        class_id=savedInstanceState.get("class_id").toString();
         findViewById(R.id.btn_back_task).setOnClickListener(this);
         txt_condition=findViewById(R.id.txt_condition);
         taskLayout=findViewById(R.id.task_layout);
@@ -74,7 +83,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 coins[0]=Integer.parseInt(snapshot.child("users").child(user.getUid()).child("coins").getValue().toString());
                 tasks_number[0]=snapshot.child("users").child(user.getUid()).child("tasks").getChildrenCount();
-                rewards_number[0]=snapshot.child("users").child(user.getUid()).child("rewards").getChildrenCount();
+                rewards_number[0]=snapshot.child("users").child(user.getUid()).child("rewards").child("reward"+unit_id).getChildrenCount();
             }
 
             @Override
@@ -108,6 +117,8 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
         }
         List<Word> words=db.getWordsByIdUnit(unit_id);
         List<Task> tasks=db.getAllTasks();
+        Reward possible_reward=db.getRewardByIdUnit(Integer.parseInt(unit_id));
+        Unit unit=db.getUnit(Integer.parseInt(unit_id));
         List<Word> temp_words=new ArrayList<Word>();
 
         if(counter.get() <5)
@@ -345,12 +356,49 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
             //ref.child("users").child(user.getUid()).child("tasks").setValue("task"+tasks_number[0]);
             ref.child("users").child(user.getUid()).child("tasks").child(new_task).child("id").setValue(unit_id);
             ref.child("users").child(user.getUid()).child("tasks").child(new_task).child("score").setValue(correct_tasks);
-            if(correct_tasks==10){
-                rewards_number[0]++;
-               // rewards_number[0] =ref.child("users").child(user.getUid()).child("rewards").get().getResult().getChildrenCount();
-                String new_reward="reward"+rewards_number[0];
-                //ref.child("users").child(user.getUid()).child("rewards").child(new_reward).child("id").setValue(unit_id);
-            }
+
+                dialog=new Dialog(this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_results);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCancelable(false);
+
+                TextView correct_results=dialog.findViewById(R.id.txt_correct_number);
+                correct_results.setText(correct_tasks.toString());
+                TextView coins_number=dialog.findViewById(R.id.txt_coins_number);
+                coins_number.setText(correct_tasks.toString());
+                TextView message=dialog.findViewById(R.id.txt_message);
+                ImageView fox_dialog=dialog.findViewById(R.id.img_fox_dialog);
+                if(correct_tasks==10){
+                    message.setText("Вау! Ты справился с заданием на отлично!");
+                    fox_dialog.setImageResource(R.drawable.ic_fox_in_love);
+                }
+            dialog.show();
+                Button ok_btn=dialog.findViewById(R.id.btn_ok_dialog_result);
+                ok_btn.setOnClickListener(view -> {
+                    if(correct_tasks==10 && rewards_number[0]==0){
+                        String new_reward="reward"+possible_reward.getID();
+                        ref.child("users").child(user.getUid()).child("rewards").child(new_reward).child("id").setValue(possible_reward.getID());
+                        dialog.setContentView(R.layout.dialog_reward);
+                        TextView reward_name=dialog.findViewById(R.id.reward_name);
+                        reward_name.setText(possible_reward.getName());
+                        TextView unit_name=dialog.findViewById(R.id.unit_name);
+                        unit_name.setText(unit.getName());
+                        Button btn_ok_reward=dialog.findViewById(R.id.btn_ok_dialog_reward);
+                        btn_ok_reward.setOnClickListener(view1 -> {
+                            Intent intent = new Intent(TaskActivity.this, UnitActivity.class);
+                            intent.putExtra("number", class_id);
+                            startActivity(intent);
+                            finish();
+                        });
+                    }else {
+                        Intent intent = new Intent(TaskActivity.this, UnitActivity.class);
+                        intent.putExtra("number", class_id);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
 
         }
 
@@ -372,6 +420,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
         if(view.getId() == R.id.btn_back_task)
         {
             Intent intent = new Intent(TaskActivity.this,UnitActivity.class);
+            intent.putExtra("number",class_id);
             startActivity(intent);
             finish();
         }

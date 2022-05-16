@@ -57,6 +57,7 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
             button.setOnClickListener((view -> {
                 Intent intent=new Intent(UnitActivity.this,TaskActivity.class);
                 intent.putExtra("unit_id",id);
+                intent.putExtra(("class_id"),class_number);
                 startActivity(intent);
             }));
             //button.setGravity(Gravity.CENTER);

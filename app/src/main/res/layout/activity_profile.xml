@@ -10,24 +10,6 @@
     android:scrollbars="vertical"
     tools:context=".ProfileActivity">
 
-    <TextView
-        android:id="@+id/text_username_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/img_profile"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="167dp"
-        android:layout_marginRight="167dp"
-        android:gravity="center"
-        android:text="no user"
-        android:textColor="@color/dark_brown"
-        android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
 
     <Button
         android:id="@+id/btn_back_profile"
@@ -41,6 +23,60 @@
         android:layout_marginTop="9dp"
         android:background="@drawable/ic_back"
         app:backgroundTint="@color/grey" />
+    <ImageView
+        android:id="@+id/img_butterfly"
+        android:layout_width="73dp"
+        android:layout_height="64dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:rotation="-33"
+        app:srcCompat="@drawable/ic_butterfly" />
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_width="128dp"
+        android:layout_height="136dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="91dp"
+        android:layout_marginEnd="146dp"
+        android:layout_marginRight="146dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_user" />
+    <ImageView
+    android:id="@+id/img_butterfly3"
+    android:layout_width="43dp"
+    android:layout_height="54dp"
+    android:layout_alignTop="@+id/btn_back_profile"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="155dp"
+    android:layout_marginEnd="332dp"
+    android:layout_marginRight="332dp"
+    android:rotation="29"
+    app:srcCompat="@drawable/ic_butterfly" />
+    <TextView
+    android:id="@+id/text_username_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/img_profile"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginStart="28dp"
+    android:layout_marginLeft="28dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="167dp"
+    android:layout_marginRight="167dp"
+    android:gravity="center"
+    android:text="no user"
+    android:textColor="@color/dark_brown"
+    android:textSize="26sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/img_profile" />
 
     <TextView
         android:id="@+id/text_email"
@@ -56,47 +92,24 @@
         android:text="no@email.ru"
         android:textSize="20sp" />
 
-    <ImageView
-        android:id="@+id/img_profile"
-        android:layout_width="128dp"
-        android:layout_height="136dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="91dp"
-        android:layout_marginEnd="146dp"
-        android:layout_marginRight="146dp"
-        app:srcCompat="@drawable/ic_user" />
 
     <Button
         android:id="@+id/btn_change"
         android:layout_width="235dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_statistics"
+        android:layout_below="@+id/text_email"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="58dp"
         android:layout_marginEnd="88dp"
         android:layout_marginRight="88dp"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="10dp"
         android:text="Изменить данные"
         android:textColor="@color/light_orange"
         android:textSize="20sp"
         app:backgroundTint="@color/red" />
-
-    <Button
-        android:id="@+id/btn_exit"
-        android:layout_width="235dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_statistics"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
-        android:layout_marginBottom="-217dp"
-        android:text="Выйти"
-        android:textColor="@color/light_orange"
-        android:textSize="20sp"
-        app:backgroundTint="@color/dark_brown" />
 
     <Button
         android:id="@+id/btn_statistics"
@@ -105,9 +118,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginEnd="89dp"
+        android:layout_marginRight="89dp"
+        android:layout_marginBottom="169dp"
         android:text="Статистика"
         android:textColor="@color/light_orange"
         android:textSize="20sp"
@@ -138,18 +151,6 @@
         android:layout_toLeftOf="@+id/btn_statistics"
         app:srcCompat="@drawable/ic_statistics" />
 
-    <ImageView
-        android:id="@+id/img_butterfly"
-        android:layout_width="73dp"
-        android:layout_height="64dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
-        android:rotation="-33"
-        app:srcCompat="@drawable/ic_butterfly" />
 
     <ImageView
         android:id="@+id/img_butterfly2"
@@ -163,17 +164,20 @@
         android:layout_marginRight="14dp"
         android:rotation="-25"
         app:srcCompat="@drawable/ic_butterfly" />
-
-    <ImageView
-        android:id="@+id/img_butterfly3"
-        android:layout_width="43dp"
-        android:layout_height="54dp"
-        android:layout_alignTop="@+id/btn_back_profile"
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="235dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_statistics"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="155dp"
-        android:layout_marginEnd="332dp"
-        android:layout_marginRight="332dp"
-        android:rotation="29"
-        app:srcCompat="@drawable/ic_butterfly" />
+        android:layout_gravity="center"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:layout_marginBottom="-217dp"
+        android:text="Выйти"
+        android:textColor="@color/light_orange"
+        android:textSize="20sp"
+        app:backgroundTint="@color/dark_brown" />
+
 </RelativeLayout>

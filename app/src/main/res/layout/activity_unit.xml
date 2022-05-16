@@ -43,12 +43,13 @@
 
     <TextView
         android:id="@+id/text_class_title"
-        android:layout_width="187dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="87dp"
-        android:layout_marginLeft="87dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="18dp"
         android:layout_toEndOf="@+id/btn_back_unit"
         android:layout_toRightOf="@+id/btn_back_unit"
         android:text="КЛАСС"
