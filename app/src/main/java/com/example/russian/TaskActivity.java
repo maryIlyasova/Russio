@@ -406,10 +406,7 @@ public class TaskActivity extends AppCompatActivity implements View.OnClickListe
                             finish();
                         });
                     }else {
-                        Intent intent = new Intent(TaskActivity.this, UnitActivity.class);
-                        intent.putExtra("number", class_id);
-                        startActivity(intent);
-                        finish();
+                        onBackPressed();
                     }
                 });
 
